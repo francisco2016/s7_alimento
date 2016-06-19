@@ -11,20 +11,19 @@ public class Usuario
     private float proteinasIgeridas;
     private float carbohidratosIgeridas;
     private float grasasIgeridas;
-    private float caloriasIgeridas;
+    private float caloriasIngeridas;
     private String nombreA;
+    //para almacenar el alimento con mayor nº de calorias
+    private float alimentoConMasCalorias;
 
     public Usuario(String nombreU) {
         this.nombreU = nombreU;
         proteinasIgeridas = 0.0f;
         carbohidratosIgeridas = 0.0f;
         grasasIgeridas = 0.0f;
-        caloriasIgeridas = 0.0f;
+        caloriasIngeridas = 0.0f;
         nombreA = "";
-    }
-
-    public String getNombreU() {
-        return nombreU;
+        alimentoConMasCalorias = 0.0f;//para almacenar el alimento con mayor nº de calorias
     }
 
     /**
@@ -36,12 +35,31 @@ public class Usuario
             proteinasIgeridas     = proteinasIgeridas + alimento.getProteinas() *(cantidad/100);
             carbohidratosIgeridas = carbohidratosIgeridas + alimento.getCarbohidratos() *(cantidad/100);
             grasasIgeridas        = grasasIgeridas + alimento.getGrasas() * (cantidad/100);
-            caloriasIgeridas      = caloriasIgeridas + alimento.getCalorias()* (cantidad/100);
+            caloriasIngeridas      = caloriasIngeridas + alimento.getCalorias()* (cantidad/100);
+            //para almacenar el alimento con mayor nº de calorias
+            alimentoConMasCalorias = caloriasIngeridas;
         }
     }
      
     /**
-     * serie de mt para calcular el % de cada macronutriente ingerido.
+     * mt para mostrar la diferencia de calorías consumidas entre dos clientes.
+     */
+    public void mayorNumeroDeCalorias(Usuario usuario){
+        if(usuario.getCaloriasIngeridas() > caloriasIngeridas){
+            caloriasIngeridas = usuario.getCaloriasIngeridas();
+            System.out.println("");
+            System.out.println("   " +usuario.getNombreU()+ " ha consumido más calorias que " +getNombreU()+ ": (" +
+                                        usuario.getCaloriasIngeridas()+ " frente a " +getCaloriasIngeridas()+ ")");
+        }
+        else{
+            System.out.println("");
+            System.out.println("   " +getNombreU()+ " ha consumido más calorias que " + usuario.getNombreU()+ ": (" +
+                                        getCaloriasIngeridas()+ " frente a " +usuario.getCaloriasIngeridas()+ ")");
+        }
+    }
+    
+    /**
+     * serie de mt para calcular el % de cada macronutriente ingerido y el nombre del cliente.
      */
     public float getPorProte(){
         return (proteinasIgeridas /(carbohidratosIgeridas + grasasIgeridas + proteinasIgeridas)) *100;
@@ -51,6 +69,12 @@ public class Usuario
     }
     public float getPorGra(){
         return  (grasasIgeridas /(proteinasIgeridas + carbohidratosIgeridas +grasasIgeridas)) *100;
+    }
+     public float getCaloriasIngeridas(){
+        return  caloriasIngeridas;
+    }
+     public String getNombreU() {
+        return nombreU;
     }
     
     /**
@@ -64,7 +88,7 @@ public class Usuario
         System.out.println("     Gramos totales de Proteinas:      " +proteinasIgeridas +     " (" +getPorProte()+ " %)");
         System.out.println("     Gramos totales de Carbohidratos:  " +carbohidratosIgeridas + " (" +getPorCarbo()+ " %)");
         System.out.println("     Gramos totales de Grasas:         " +grasasIgeridas+         " (" +getPorGra()+   " %)");
-        System.out.println("     Total de calorias:                " +caloriasIgeridas);
+        System.out.println("     Total de calorias:                " +caloriasIngeridas);
         System.out.println("     ----------------------------------------------     ");
 
     }
