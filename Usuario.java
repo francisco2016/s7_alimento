@@ -39,7 +39,20 @@ public class Usuario
             caloriasIgeridas      = caloriasIgeridas + alimento.getCalorias()* (cantidad/100);
         }
     }
-
+     
+    /**
+     * serie de mt para calcular el % de cada macronutriente ingerido.
+     */
+    public float getPorProte(){
+        return (proteinasIgeridas /(carbohidratosIgeridas + grasasIgeridas + proteinasIgeridas)) *100;
+    }
+    public float getPorCarbo(){
+        return  (carbohidratosIgeridas /(proteinasIgeridas + grasasIgeridas + carbohidratosIgeridas)) *100;
+    }
+    public float getPorGra(){
+        return  (grasasIgeridas /(proteinasIgeridas + carbohidratosIgeridas +grasasIgeridas)) *100;
+    }
+    
     /**
      * muestra el nombre del cliente y los datos del alimento.
      */
@@ -48,9 +61,9 @@ public class Usuario
         System.out.println("");
         System.out.println("     Nombre del cliente:               " +nombreU);
         System.out.println("     Nombre del alimento:              " +nombreA);
-        System.out.println("     Gramos totales de Proteinas:      " +proteinasIgeridas);
-        System.out.println("     Gramos totales de Carbohidratos:  " +carbohidratosIgeridas);
-        System.out.println("     Gramos totales de Grasas:         " +grasasIgeridas);
+        System.out.println("     Gramos totales de Proteinas:      " +proteinasIgeridas +     " (" +getPorProte()+ " %)");
+        System.out.println("     Gramos totales de Carbohidratos:  " +carbohidratosIgeridas + " (" +getPorCarbo()+ " %)");
+        System.out.println("     Gramos totales de Grasas:         " +grasasIgeridas+         " (" +getPorGra()+   " %)");
         System.out.println("     Total de calorias:                " +caloriasIgeridas);
         System.out.println("     ----------------------------------------------     ");
 

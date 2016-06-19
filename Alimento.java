@@ -27,19 +27,15 @@ public class Alimento
     public String getNombre(){
         return nombre;
     }
-
     public float getProteinas(){
         return proteinas;
     }
-
     public float getCarbohidratos(){
         return carbohidratos;
     }
-
     public float getGrasas() {
         return grasas;
     }
-
     public float getCalorias() {
         return calorias;
     }
@@ -48,29 +44,26 @@ public class Alimento
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public void setProteinas(float proteinas) {
         this.proteinas = proteinas;
     }
-
     public void setCarbohidratos(float carbohidratos) {
         this.carbohidratos = carbohidratos;
     }
-
     public void setGrasas(float grasas) {
         this.grasas = grasas;
     }
 
     //muestra por pantalla los datos de los macronutrientes/ 100 gm de alimento.
     public void muestraDatos(){
-        System.out.println("        ---- LISTA DE MACRONUTRIENTES ----");
+        System.out.println("     ----    LISTA DE MACRONUTRIENTES      ----");
         System.out.println("");
-        System.out.println("        Nombre del alimento:              " +nombre);
-        System.out.println("        Proteinas por 100/gm:             " +proteinas);
-        System.out.println("        Carbohidratos por 100/gm:         " +carbohidratos);
-        System.out.println("        Grasas por 100/gm:                " +grasas);
-        System.out.println("        Total de calorias:                " +getCalorias());
-        System.out.println("        Macronutriente/s mayoritario/s:   " +macronutrientreMayoritaio());
+        System.out.println("     Nombre del alimento:              " +nombre);
+        System.out.println("     Proteinas por 100/gm:             " +proteinas);
+        System.out.println("     Carbohidratos por 100/gm:         " +carbohidratos);
+        System.out.println("     Grasas por 100/gm:                " +grasas);
+        System.out.println("     Total de calorias:                " +getCalorias());
+        System.out.println("     Macronutriente/s mayoritario/s:   " +macronutrientreMayoritaio());
         System.out.println("    -----------------------------------------------     ");
 
     }
