@@ -45,15 +45,15 @@ public class Usuario
      * mt para mostrar la diferencia de calorías consumidas entre dos clientes.
      */
     public void mayorNumeroDeCalorias(Usuario usuario){
-        if(usuario.getCaloriasIngeridas() > caloriasIngeridas){
-            caloriasIngeridas = usuario.getCaloriasIngeridas();
+        if(usuario.getCaloriasIngeridas() > getCaloriasIngeridas()){
+           // caloriasIngeridas = usuario.getCaloriasIngeridas();
             System.out.println("");
-            System.out.println("   " +usuario.getNombreU()+ " ha consumido más calorias que " +getNombreU()+ ": (" +
+            System.out.println("   " +usuario.getNombreU()+ " ha ingerido más calorias que " +getNombreU()+ ": (" +
                                         usuario.getCaloriasIngeridas()+ " frente a " +getCaloriasIngeridas()+ ")");
         }
         else{
             System.out.println("");
-            System.out.println("   " +getNombreU()+ " ha consumido más calorias que " + usuario.getNombreU()+ ": (" +
+            System.out.println("   " +getNombreU()+ " ha ingerido MAS calorias que " + usuario.getNombreU()+ ": (" +
                                         getCaloriasIngeridas()+ " frente a " +usuario.getCaloriasIngeridas()+ ")");
         }
     }
