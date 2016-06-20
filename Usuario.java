@@ -15,6 +15,8 @@ public class Usuario
     private String nombreA;
     //para almacenar el alimento con mayor nº de calorias
     private float alimentoConMasCalorias;
+    //para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
+    private float alimentoMasCalorico;
 
     public Usuario(String nombreU) {
         this.nombreU = nombreU;
@@ -24,6 +26,7 @@ public class Usuario
         caloriasIngeridas = 0.0f;
         nombreA = "";
         alimentoConMasCalorias = 0.0f;//para almacenar el alimento con mayor nº de calorias
+        alimentoMasCalorico = 0.0f;
     }
 
     /**
@@ -40,43 +43,62 @@ public class Usuario
             alimentoConMasCalorias = caloriasIngeridas;
         }
     }
-     
+
+    //     /**
+    //      * para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
+    //      */
+    //     public void alimentoMasCalorico(Alimento alimento){
+    //         if(alimento.getCaloriasIngeridas() > alimentoConMasCalorias){
+    //             alimentoConMasCalorias = alimento.getCaloriasIngeridas();
+    //         }
+    //     }
+
     /**
      * mt para mostrar la diferencia de calorías consumidas entre dos clientes.
      */
     public void mayorNumeroDeCalorias(Usuario usuario){
-        if(usuario.getCaloriasIngeridas() > getCaloriasIngeridas()){
-           // caloriasIngeridas = usuario.getCaloriasIngeridas();
+        if(usuario.getCaloriasIngeridas() == getCaloriasIngeridas()){
             System.out.println("");
-            System.out.println("   " +usuario.getNombreU()+ " ha ingerido más calorias que " +getNombreU()+ ": (" +
-                                        usuario.getCaloriasIngeridas()+ " frente a " +getCaloriasIngeridas()+ ")");
+            System.out.println("   " +usuario.getNombreU()+ " ha ingerido el mismo nºde calorias que " +getNombreU()+ ": (" +
+                usuario.getCaloriasIngeridas()+ " frente a " +getCaloriasIngeridas()+ ")");
         }
         else{
-            System.out.println("");
-            System.out.println("   " +getNombreU()+ " ha ingerido MAS calorias que " + usuario.getNombreU()+ ": (" +
-                                        getCaloriasIngeridas()+ " frente a " +usuario.getCaloriasIngeridas()+ ")");
+            if(usuario.getCaloriasIngeridas() > getCaloriasIngeridas()){
+                System.out.println("");
+                System.out.println("   " +usuario.getNombreU()+ " ha ingerido más calorias que " +getNombreU()+ ": (" +
+                    usuario.getCaloriasIngeridas()+ " frente a " +getCaloriasIngeridas()+ ")");
+            }
+            else{
+                System.out.println("");
+                System.out.println("   " +usuario.getNombreU()+ " ha ingerido menos calorias que " +getNombreU()+ ": (" +
+                    usuario.getCaloriasIngeridas()+ " frente a " +getCaloriasIngeridas()+ ")");
+            }
         }
     }
-    
+
     /**
      * serie de mt para calcular el % de cada macronutriente ingerido y el nombre del cliente.
      */
     public float getPorProte(){
         return (proteinasIgeridas /(carbohidratosIgeridas + grasasIgeridas + proteinasIgeridas)) *100;
     }
+
     public float getPorCarbo(){
         return  (carbohidratosIgeridas /(proteinasIgeridas + grasasIgeridas + carbohidratosIgeridas)) *100;
     }
+
     public float getPorGra(){
         return  (grasasIgeridas /(proteinasIgeridas + carbohidratosIgeridas +grasasIgeridas)) *100;
     }
-     public float getCaloriasIngeridas(){
+
+    public float getCaloriasIngeridas(){
         return  caloriasIngeridas;
     }
-     public String getNombreU() {
+
+    public String getNombreU() {
         return nombreU;
     }
-    
+
     /**
      * muestra el nombre del cliente y los datos del alimento.
      */
