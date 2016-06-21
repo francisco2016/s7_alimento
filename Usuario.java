@@ -15,8 +15,9 @@ public class Usuario
     private String nombreA;
     //para almacenar el alimento con mayor nº de calorias
     private float alimentoConMasCalorias;
-    //para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
-    private float alimentoMasCalorico;
+    //para guardar y visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido
+    //hasta ahora por un usuario.
+    private Alimento alimentoMasCalorico;
 
     public Usuario(String nombreU) {
         this.nombreU = nombreU;
@@ -26,7 +27,7 @@ public class Usuario
         caloriasIngeridas = 0.0f;
         nombreA = "";
         alimentoConMasCalorias = 0.0f;//para almacenar el alimento con mayor nº de calorias
-        alimentoMasCalorico = 0.0f;
+        alimentoMasCalorico = null;
     }
 
     /**
@@ -41,17 +42,28 @@ public class Usuario
             caloriasIngeridas      = caloriasIngeridas + alimento.getCalorias()* (cantidad/100);
             //para almacenar el alimento con mayor nº de calorias
             alimentoConMasCalorias = caloriasIngeridas;
+            //
+            if((alimentoMasCalorico == null)|| alimento.getCalorias() >= alimentoMasCalorico.getCalorias()){
+                alimentoMasCalorico = alimento;
+            }
         }
     }
 
-    //     /**
-    //      * para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
-    //      */
-    //     public void alimentoMasCalorico(Alimento alimento){
-    //         if(alimento.getCaloriasIngeridas() > alimentoConMasCalorias){
-    //             alimentoConMasCalorias = alimento.getCaloriasIngeridas();
-    //         }
-    //     }
+    /**
+     * para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
+     */
+    public void alimentoMasCalorico(){
+        System.out.println("");
+        if(alimentoMasCalorico != null){
+            System.out.println("    Alimento más calórico ingerido por. " + getNombreU()+ " hasta el momento es:\n " +
+                      alimentoMasCalorico.getNombre()+ " con un total de: " +alimentoMasCalorico.getCalorias() 
+                        + " calorias por cada 100 gm.");
+                
+        }
+        else{
+            System.out.println("No se han ingerido alimentos.");
+        }
+    }
 
     /**
      * mt para mostrar la diferencia de calorías consumidas entre dos clientes.
