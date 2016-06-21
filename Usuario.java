@@ -56,7 +56,26 @@ public class Usuario
             alimentosComidos.add(alimento);
         }
     }
-
+    
+    /**
+     * mt para  mostrar por pantalla todos los alimentos pedidos por el cliente.
+     */
+    public void muestraTodosLosAlimentos(){
+        for(int i = 0; i < alimentosComidos.size(); i++){
+            System.out.println("");
+             System.out.println("Plato nº " +(i+1)+ " ************************\n " );
+             System.out.println("     ----              DATOS                   ----");
+        System.out.println("");
+        System.out.println("     Nombre del cliente:               " +nombreU);
+        System.out.println("     Nombre del alimento:              " +nombreA);
+        System.out.println("     Gramos totales de Proteinas:      " +proteinasIgeridas +     " (" +getPorProte()+ " %)");
+        System.out.println("     Gramos totales de Carbohidratos:  " +carbohidratosIgeridas + " (" +getPorCarbo()+ " %)");
+        System.out.println("     Gramos totales de Grasas:         " +grasasIgeridas+         " (" +getPorGra()+   " %)");
+        System.out.println("     Total de calorias:                " +caloriasIngeridas);
+        System.out.println("     ----------------------------------------------     ");
+        }
+    }
+    
     /**
      * permita pasar como parámetro el nombre de un alimento e indique si el usuario ha comido ese 
      * alimento más de una vez o no y, en caso afirmativo, cuántas veces lo ha hecho.
@@ -69,7 +88,7 @@ public class Usuario
             }
         }
         if(cuentaMismoAlimento > 1){
-            System.out.println("Ha repetido " +nombreAlimento + ",  " +cuentaMismoAlimento+ " veces. ");
+            System.out.println("Ha comido " +nombreAlimento + ", " +cuentaMismoAlimento+ " veces. ");
         }
         else{
             System.out.println("No ha repetido.  ");
