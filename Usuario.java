@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Usuario here.
  * 
@@ -18,7 +18,8 @@ public class Usuario
     //para guardar y visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido
     //hasta ahora por un usuario.
     private Alimento alimentoMasCalorico;
-
+    //colección de alimentos comidos hasta el momento.
+    private ArrayList<Alimento> alimentosComidos;
     public Usuario(String nombreU) {
         this.nombreU = nombreU;
         proteinasIgeridas = 0.0f;
@@ -28,6 +29,7 @@ public class Usuario
         nombreA = "";
         alimentoConMasCalorias = 0.0f;//para almacenar el alimento con mayor nº de calorias
         alimentoMasCalorico = null;
+        alimentosComidos = new ArrayList<>();
     }
 
     /**
@@ -46,9 +48,24 @@ public class Usuario
             if((alimentoMasCalorico == null)|| alimento.getCalorias() >= alimentoMasCalorico.getCalorias()){
                 alimentoMasCalorico = alimento;
             }
+            alimentosComidos.add(alimento);
         }
     }
-
+    
+    /**
+     * codifica el código necesario para poder visualizar por pantalla los datos nutricionales del alimento que el 
+     * usuario ha comido en una determinada posición invocando un método sobre el objeto que representa a dicho usuario.
+     */
+    public void posicionDeAlimentoElegido(int posicion){
+        if(posicion >= 0 && posicion < alimentosComidos.size()){
+            
+           alimentosComidos.get(posicion).muestraDatos();
+        }
+        else{
+             System.out.println("Ningún plato tiene la posición " +posicion);
+        }
+    }
+    
     /**
      * para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
      */
@@ -57,7 +74,7 @@ public class Usuario
         if(alimentoMasCalorico != null){
             System.out.println("    Alimento más calórico ingerido por. " + getNombreU()+ " hasta el momento es:\n " +
                       alimentoMasCalorico.getNombre()+ " con un total de: " +alimentoMasCalorico.getCalorias() 
-                        + " calorias por cada 100 gm.");
+                      + " calorias por cada 100 gm.");
                 
         }
         else{
