@@ -20,6 +20,9 @@ public class Usuario
     private Alimento alimentoMasCalorico;
     //colección de alimentos comidos hasta el momento.
     private ArrayList<Alimento> alimentosComidos;
+    //para contar el nº de veces que un cliente come el mismo plato.
+    private int  cuentaMismoAlimento;
+    private String nombreAlimentoRepetido;
     public Usuario(String nombreU) {
         this.nombreU = nombreU;
         proteinasIgeridas = 0.0f;
@@ -30,6 +33,8 @@ public class Usuario
         alimentoConMasCalorias = 0.0f;//para almacenar el alimento con mayor nº de calorias
         alimentoMasCalorico = null;
         alimentosComidos = new ArrayList<>();
+        cuentaMismoAlimento = 0;  //para contar el nº de veces que un cliente come el mismo plato.
+        nombreAlimentoRepetido = "";
     }
 
     /**
@@ -51,21 +56,41 @@ public class Usuario
             alimentosComidos.add(alimento);
         }
     }
-    
+
+    /**
+     * permita pasar como parámetro el nombre de un alimento e indique si el usuario ha comido ese 
+     * alimento más de una vez o no y, en caso afirmativo, cuántas veces lo ha hecho.
+     */
+    public void alimentosRepetidos(String nombreAlimento){
+
+        for(Alimento repetidos: alimentosComidos){
+            if(repetidos.getNombre() == nombreAlimento){
+                cuentaMismoAlimento ++;
+            }
+        }
+        if(cuentaMismoAlimento > 1){
+            System.out.println("Ha repetido " +nombreAlimento + ",  " +cuentaMismoAlimento+ " veces. ");
+        }
+        else{
+            System.out.println("No ha repetido.  ");
+        }
+    }
+
     /**
      * codifica el código necesario para poder visualizar por pantalla los datos nutricionales del alimento que el 
      * usuario ha comido en una determinada posición invocando un método sobre el objeto que representa a dicho usuario.
      */
     public void posicionDeAlimentoElegido(int posicion){
+        System.out.println("Caracteristicas del plato servido en la posición nº " +posicion);
         if(posicion >= 0 && posicion < alimentosComidos.size()){
-            
-           alimentosComidos.get(posicion).muestraDatos();
+
+            alimentosComidos.get(posicion).muestraDatos();
         }
         else{
-             System.out.println("Ningún plato tiene la posición " +posicion);
+            System.out.println("Ningún plato tiene la posición " +posicion);
         }
     }
-    
+
     /**
      * para visualizar por pantalla el nombre del alimento más calórico por cada 100 gramos consumido hasta ahora por un usuario.
      */
@@ -73,9 +98,9 @@ public class Usuario
         System.out.println("");
         if(alimentoMasCalorico != null){
             System.out.println("    Alimento más calórico ingerido por. " + getNombreU()+ " hasta el momento es:\n " +
-                      alimentoMasCalorico.getNombre()+ " con un total de: " +alimentoMasCalorico.getCalorias() 
-                      + " calorias por cada 100 gm.");
-                
+                alimentoMasCalorico.getNombre()+ " con un total de: " +alimentoMasCalorico.getCalorias() 
+                + " calorias por cada 100 gm.");
+
         }
         else{
             System.out.println("No se han ingerido alimentos.");
@@ -126,6 +151,10 @@ public class Usuario
 
     public String getNombreU() {
         return nombreU;
+    }
+
+    public String getNombreAlimentoRepetido(){
+        return  nombreAlimentoRepetido;
     }
 
     /**
